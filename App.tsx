@@ -1,6 +1,6 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
-import {StatusBar, Text, useColorScheme} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Colors} from './src/uikit/colors';
 import {RoutesStack} from './src/routes';

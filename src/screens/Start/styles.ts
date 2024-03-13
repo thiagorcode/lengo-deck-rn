@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
