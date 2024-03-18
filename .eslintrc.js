@@ -24,6 +24,6 @@ module.exports = {
     __dirname: true,
   },
   rules: {
-    'no-console': 'error',
+    'no-console': 'warn',
   },
 };

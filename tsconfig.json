@@ -3,5 +3,13 @@
     "baseUrl": ".",
     "strictNullChecks": true
   },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "types/custom.d.ts",
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "extends": "@react-native/typescript-config/tsconfig.json"
 }

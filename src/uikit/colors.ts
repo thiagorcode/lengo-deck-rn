@@ -16,7 +16,8 @@ export const Colors = {
     950: '#2a1362',
   },
   neutral: {
-    100: '#FFFFFF',
+    50: '#FFFFFF',
+    100: '#f4f3ff',
     200: '#F2F2F2',
     300: '#CCCCCC',
     400: '#A6A6A6',
