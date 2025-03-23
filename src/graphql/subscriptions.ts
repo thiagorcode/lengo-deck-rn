@@ -15,6 +15,9 @@ export const onCreateDeck = /* GraphQL */ `subscription OnCreateDeck($filter: Mo
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }
@@ -29,6 +32,9 @@ export const onUpdateDeck = /* GraphQL */ `subscription OnUpdateDeck($filter: Mo
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }
@@ -43,6 +49,9 @@ export const onDeleteDeck = /* GraphQL */ `subscription OnDeleteDeck($filter: Mo
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }

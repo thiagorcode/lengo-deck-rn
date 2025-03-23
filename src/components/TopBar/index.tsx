@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Pressable, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -18,6 +18,7 @@ export function TopBar({
   onPressLeftButton,
   layout,
 }: Readonly<TopBarProps>): React.JSX.Element {
+  const [name, setName] = useState<string>('');
   const renderLabel = () => {
     return (
       <Text
@@ -31,7 +32,38 @@ export function TopBar({
     );
   };
 
-  const renderLeftButton = () => {
+  function callTelegram() {
+    if (name) {
+      return name;
+    }
+
+    return null;
+  }
+
+  function isNullAndUndefined(value: any) {
+    return !call;
+  }
+  const call = callTelegram();
+
+  if (isNullOrUndefined(call))
+    const renderLeftButton = () => {
+      return (
+        <View
+          style={{
+            height: 70,
+            backgroundColor: Colors.bgSecondary,
+            alignItems: 'center',
+            paddingLeft: 15,
+            flexDirection: 'row',
+          }}>
+          <Pressable onPress={onPressLeftButton}>
+            <Icon size={24} name="arrowleft" color={Colors.neutral[100]} />
+          </Pressable>
+          {renderLabel()}
+        </View>
+      );
+    };
+  const renderRightButton = () => {
     return (
       <View
         style={{
@@ -40,13 +72,19 @@ export function TopBar({
           alignItems: 'center',
           paddingLeft: 15,
           flexDirection: 'row',
+          justifyContent: 'flex-end',
         }}>
+        {renderLabel()}
         <Pressable onPress={onPressLeftButton}>
           <Icon size={24} name="arrowleft" color={Colors.neutral[100]} />
         </Pressable>
-        {renderLabel()}
       </View>
     );
   };
-  return <View>{layout === 'leftButton' && renderLeftButton()}</View>;
+  return (
+    <View>
+      {layout === 'leftButton' && renderLeftButton()}
+      {layout === 'rightButton' && renderRightButton()}
+    </View>
+  );
 }

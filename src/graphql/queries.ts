@@ -15,6 +15,9 @@ export const getDeck = /* GraphQL */ `query GetDeck($id: ID!) {
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }
@@ -31,10 +34,43 @@ export const listDecks = /* GraphQL */ `query ListDecks(
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     nextToken
+    startedAt
     __typename
   }
 }
 ` as GeneratedQuery<APITypes.ListDecksQueryVariables, APITypes.ListDecksQuery>;
+export const syncDecks = /* GraphQL */ `query SyncDecks(
+  $filter: ModelDeckFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDecks(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.SyncDecksQueryVariables, APITypes.SyncDecksQuery>;

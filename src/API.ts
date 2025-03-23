@@ -6,6 +6,7 @@ export type CreateDeckInput = {
   id?: string | null,
   name: string,
   description?: string | null,
+  _version?: number | null,
 };
 
 export type ModelDeckConditionInput = {
@@ -14,6 +15,7 @@ export type ModelDeckConditionInput = {
   and?: Array< ModelDeckConditionInput | null > | null,
   or?: Array< ModelDeckConditionInput | null > | null,
   not?: ModelDeckConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelStringInput = {
@@ -56,6 +58,13 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type Deck = {
   __typename: "Deck",
   id: string,
@@ -63,16 +72,21 @@ export type Deck = {
   description?: string | null,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
 export type UpdateDeckInput = {
   id: string,
   name?: string | null,
   description?: string | null,
+  _version?: number | null,
 };
 
 export type DeleteDeckInput = {
   id: string,
+  _version?: number | null,
 };
 
 export type ModelDeckFilterInput = {
@@ -82,6 +96,7 @@ export type ModelDeckFilterInput = {
   and?: Array< ModelDeckFilterInput | null > | null,
   or?: Array< ModelDeckFilterInput | null > | null,
   not?: ModelDeckFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelIDInput = {
@@ -104,6 +119,7 @@ export type ModelDeckConnection = {
   __typename: "ModelDeckConnection",
   items:  Array<Deck | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
 export type ModelSubscriptionDeckFilterInput = {
@@ -112,6 +128,7 @@ export type ModelSubscriptionDeckFilterInput = {
   description?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionDeckFilterInput | null > | null,
   or?: Array< ModelSubscriptionDeckFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -157,6 +174,9 @@ export type CreateDeckMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -173,6 +193,9 @@ export type UpdateDeckMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -189,6 +212,9 @@ export type DeleteDeckMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -204,6 +230,9 @@ export type GetDeckQuery = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -223,8 +252,38 @@ export type ListDecksQuery = {
       description?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncDecksQueryVariables = {
+  filter?: ModelDeckFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncDecksQuery = {
+  syncDecks?:  {
+    __typename: "ModelDeckConnection",
+    items:  Array< {
+      __typename: "Deck",
+      id: string,
+      name: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -240,6 +299,9 @@ export type OnCreateDeckSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -255,6 +317,9 @@ export type OnUpdateDeckSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -270,5 +335,8 @@ export type OnDeleteDeckSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };

@@ -18,6 +18,9 @@ export const createDeck = /* GraphQL */ `mutation CreateDeck(
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }
@@ -35,6 +38,9 @@ export const updateDeck = /* GraphQL */ `mutation UpdateDeck(
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }
@@ -52,6 +58,9 @@ export const deleteDeck = /* GraphQL */ `mutation DeleteDeck(
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
     __typename
   }
 }

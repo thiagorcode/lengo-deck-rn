@@ -14,6 +14,7 @@ Amplify.configure(amplifyconfig);
 
 DataStore.configure({
   authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
+  fullSyncInterval: 5000,
   syncExpressions: [
     syncExpression(Deck, () => {
       console.log('Sync');
@@ -21,7 +22,6 @@ DataStore.configure({
     }),
   ],
 });
-DataStore.start();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
